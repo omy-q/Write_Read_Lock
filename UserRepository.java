@@ -27,7 +27,8 @@ public class UserRepository {
     public List<User> getOrderedUsers() {
         lock.readLock().lock();
         try {
-            users.sort(new Comparator<User>() {
+            List<User> copyUsers = new ArrayList<>(users);
+            copyUsers.sort(new Comparator<User>() {
                 @Override
                 public int compare(User user1, User user2) {
                     return user1.compareTo(user2);
